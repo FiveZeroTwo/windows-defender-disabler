@@ -34,5 +34,15 @@ Set-ItemProperty $rtp "DisableScanOnRealtimeEnable" 1 -Type DWord
 # without a clean Windows reinstall.
 Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\CI\Policy' -Name VerifiedAndReputablePolicyState -Value 2 -Type DWord
 
-Write-Host "Done. Engine + real-time protection disabled via policy; Smart App Control off." -ForegroundColor Green
+# Disable SmartScreen (Windows shell, Explorer app check, and Edge)
+$sys = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System"
+$exp = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer"
+$edge = "HKLM:\SOFTWARE\Policies\Microsoft\Edge"
+New-Item -Path $sys  -Force | Out-Null
+New-Item -Path $edge -Force | Out-Null
+Set-ItemProperty $sys  "EnableSmartScreen"  0     -Type DWord
+Set-ItemProperty $exp  "SmartScreenEnabled" "Off" -Type String
+Set-ItemProperty $edge "SmartScreenEnabled" 0     -Type DWord
+
+Write-Host "Done. Defender real-time protection, Smart App Control, and SmartScreen disabled." -ForegroundColor Green
 Write-Host "Verify with:  Get-MpComputerStatus | Select RealTimeProtectionEnabled" -ForegroundColor Cyan
