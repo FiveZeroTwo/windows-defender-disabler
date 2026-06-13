@@ -19,11 +19,22 @@ you're working in an isolated/test environment).
   Virus & threat protection > Manage settings > Tamper Protection > Off).
 - An elevated PowerShell session (Run as administrator).
 
-## Steps
+## Steps (easy way)
 
 1. Turn off Tamper Protection:
    Settings > Windows Security > Virus & threat protection > Manage settings >
    Tamper Protection > Off.
+
+2. Double-click `Run.bat` and approve the UAC prompt.
+   It self-elevates and runs the script for you (no need to set execution
+   policy or open an admin terminal manually).
+
+3. When the script asks, reboot the computer. This is required for the Smart
+   App Control and SmartScreen changes to take effect.
+
+## Steps (manual way)
+
+1. Turn off Tamper Protection (see above).
 
 2. Open PowerShell as administrator:
    Press Start, type "PowerShell", right-click "Windows PowerShell" and choose
