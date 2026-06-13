@@ -30,9 +30,10 @@ Set-ItemProperty $rtp "DisableBehaviorMonitoring"   1 -Type DWord
 Set-ItemProperty $rtp "DisableOnAccessProtection"   1 -Type DWord
 Set-ItemProperty $rtp "DisableScanOnRealtimeEnable" 1 -Type DWord
 
-# Disable Smart App Control (2 = Off). NOTE: one-way - SAC cannot be re-enabled
-# without a clean Windows reinstall.
-Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\CI\Policy' -Name VerifiedAndReputablePolicyState -Value 2 -Type DWord
+# Disable Smart App Control (0 = Off, 1 = On, 2 = Evaluation). Takes effect after
+# reboot. NOTE: one-way - once Off, SAC cannot be re-enabled without a clean
+# Windows reinstall.
+Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\CI\Policy' -Name VerifiedAndReputablePolicyState -Value 0 -Type DWord
 
 # Disable SmartScreen (Windows shell, Explorer app check, and Edge)
 $sys = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\System"
