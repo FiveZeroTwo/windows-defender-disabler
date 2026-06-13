@@ -13,6 +13,13 @@ you're working in an isolated/test environment).
 - Disables Windows Smart App Control.
 - Disables SmartScreen (Windows shell, Explorer app check, and Edge).
 
+## Contents
+
+- `Run.bat` - one-click menu launcher (self-elevates). Pick Disable or Restore.
+- `Disable-Defender.ps1` - turns the protections off.
+- `Restore-Defender.ps1` - re-enables Defender and SmartScreen. (Smart App
+  Control and Tamper Protection cannot be re-enabled by script.)
+
 ## Prerequisites
 
 - Tamper Protection must be turned off first (Settings > Windows Security >
@@ -25,12 +32,14 @@ you're working in an isolated/test environment).
    Settings > Windows Security > Virus & threat protection > Manage settings >
    Tamper Protection > Off.
 
-2. Double-click `Run.bat` and approve the UAC prompt.
-   It self-elevates and runs the script for you (no need to set execution
-   policy or open an admin terminal manually).
+2. Double-click `Run.bat`, choose an action, and approve the UAC prompt.
+   It self-elevates and runs the chosen script for you (no need to set
+   execution policy or open an admin terminal manually).
 
 3. When the script asks, reboot the computer. This is required for the Smart
    App Control and SmartScreen changes to take effect.
+
+To undo later, run `Run.bat` again and choose Restore.
 
 ## Steps (manual way)
 
@@ -80,4 +89,4 @@ you're working in an isolated/test environment).
 
 ## License
 
-Use at your own risk. No warranty of any kind.
+MIT - see `LICENSE`. Use at your own risk. No warranty of any kind.
